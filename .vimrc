@@ -17,9 +17,9 @@ set expandtab           "输入 tab 时自动将其转化为空格
 "appearance
 set number          "设置行号
 augroup relative_numbser
-     autocmd!
-     autocmd InsertEnter * :set norelativenumber
-     autocmd InsertLeave * :set relativenumber
+    autocmd!
+    autocmd InsertEnter * :set norelativenumber
+    autocmd InsertLeave * :set relativenumber
 augroup END
 
 set cursorline      "突出显示当前行
@@ -131,15 +131,7 @@ nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
         "call setline(8,"")
         "endif
 "endfunc
-autocmd BufNewfile * normal G   " 新建文件时，以正常模式自动将光标移动到文件末尾
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call pathogen#infect()
-
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin('~/.vim/bundle/Vundle.vim')
-"Plugin 'tpope/vim-pathogen'
-"Plugin 'luochen1990/rainbow'
-"call vundle#end()
+"autocmd BufNewfile * normal G   " 新建文件时，以正常模式自动将光标移动到文件末尾
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
@@ -226,9 +218,11 @@ let g:indent_guides_start_level = 1            "对齐线的缩进级别
 let g:indent_guides_guide_size = 1             "size，1 char
 let g:indent_guides_tab_guides = 0             "添加行，对tab对齐的禁用
 
-"vim-commentary
-autocmd FileType python,shell set commentstring=#\ %s                 " 设置Python注释字符
-autocmd FileType mako set cms=##\ %s
+augroup vim-commentary
+    autocmd!
+    autocmd FileType python,shell set commentstring=#\ %s                 " 设置Python注释字符
+    autocmd FileType mako set cms=##\ %s
+augroup END
 
 "YankRing.vim"
 nmap <Leader>y :YRShow<CR>  "<leader>指键盘上的\"
@@ -316,7 +310,6 @@ nnoremap <leader>% :MtaJumpToOtherTag<CR>
 "vim-css3-syntax
 augroup VimCSS3Syntax
   autocmd!
-
   autocmd FileType css setlocal iskeyword+=-
 augroup END
 
@@ -346,4 +339,7 @@ let g:javascript_conceal_noarg_arrow_function = " "
 let g:javascript_conceal_underscore_arrow_function = " "
 set conceallevel=1
 
-autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
+augroup isort
+    " \i mapping: use isort sort import python packages
+    autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
+augroup END
