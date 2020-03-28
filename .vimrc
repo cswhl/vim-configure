@@ -33,6 +33,8 @@ set showcmd       "显示输入的vim命令
 set hlsearch        "高亮搜索
 set showmatch       "自动显示配对的括号
 set incsearch      "搜索时光标自动跳转匹配位置
+set path=./;,**
+set tags=./tags';,tags
 
 "edit
 "set spell spelllang=en_us   "打开英文单词的拼写检查
@@ -198,9 +200,10 @@ Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop'  }
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "ctags插件
 "autocmd BufWritePost * call system("ctags -R")  "保存文件时自动调用ctags
+nnoremap <F10> :!ctags -R<CR>
 
 "NERDTree"
-map <F10> :NERDTreeToggle<CR>
+"map <F10> :NERDTreeToggle<CR>
 
 "tagbar
 nmap <F9> :TagbarToggle<CR>
@@ -287,7 +290,7 @@ nmap <leader>+ <Plug>AirlineSelectNextTab
 let g:AutoPairsFlyMode = 1
 
 "vim-autoformat
-noremap <F7> :Autoformat<CR>
+noremap <F7> :Autoformat<CR> " Ycm 是否安装成功诊断
 let g:autoformat_verbosemode=1   "output errors on formatters that failed
 "for C, C++, C++/CLI, Objective‑C, C#, and Java Source Code
 let g:formatdef_astyle_c = '"astyle --style=attach --pad-oper"'
