@@ -196,6 +196,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'rking/ag.vim'
     nmap <c-t> :Ag!<space>
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop'  }
+Plug 'terryma/vim-multiple-cursors'
  call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "ctags插件
@@ -253,6 +254,8 @@ map gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "indentLine
 let g:indentLine_enabled = 1
+set foldmethod=indent "基于缩进折叠"
+set nofoldenable  " 启动vim时关闭折叠
 
 "syntastic
 set statusline+=%#warningmsg#
@@ -346,3 +349,4 @@ augroup isort
     " \i mapping: use isort sort import python packages
     autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
 augroup END
+
