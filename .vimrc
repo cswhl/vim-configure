@@ -24,7 +24,8 @@ augroup END
 
 set cursorline      "突出显示当前行
     hi CursorLine cterm=none ctermbg=DarkMagenta ctermfg=White  "高亮当前行
-set colorcolumn =150  "设置列宽提示，提示注意代码长度
+set colorcolumn=120  "设置列宽提示，提示注意代码长度
+set textwidth=120
 set laststatus=2 " 总是显示状态栏
 set ruler          "在状态栏显示光标所在行、列
 set showcmd       "显示输入的vim命令
@@ -55,7 +56,7 @@ function! CompileRunGcc()
     if &filetype == 'c'
         exec '!g++ % -o %<'
         exec '!time ./%<'
-   elseif &filetype == 'cpp'
+    elseif &filetype == 'cpp'
         exec '!g++ % -o %<'
         exec '!time ./%<'
     elseif &filetype == 'python'
@@ -63,6 +64,9 @@ function! CompileRunGcc()
        " exec '!time python3.6 %'
     elseif &filetype == 'sh'
         :!time bash %
+    elseif &filetype == "java"
+        exec '!javac %'
+        exec "!time java %<"
     endif
 endfunction
 
@@ -197,6 +201,7 @@ Plug 'rking/ag.vim'
     nmap <c-t> :Ag!<space>
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop'  }
 Plug 'terryma/vim-multiple-cursors'
+
  call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "ctags插件
